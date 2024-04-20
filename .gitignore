@@ -161,3 +161,8 @@ cython_debug/
 *.yaml
 *.txt
 *.mp4
+
+# Hide folder
+datasets/
+runs/
+test/
