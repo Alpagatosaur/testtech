@@ -183,12 +183,8 @@ def track(xyxy, previous_track, i_cadre=50):
     temp_dis = -1
     for k, previous_pos in previous_track.items():
         distance = get_distance(center, previous_pos)
-        if temp_dis < 0:
-            temp_dis = distance
         if distance <= i_cadre:
-            if distance < temp_dis:
-                temp_dis = distance
-                minim = k
+            minim = k
     return minim
 
 def clean_track(dict_track, list_keys):
