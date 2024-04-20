@@ -153,3 +153,8 @@ cython_debug/
 
 #Model .pt
 *.pt
+
+#Images & YAML
+*.jpg
+*.png
+*.yaml
