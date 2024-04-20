@@ -6,6 +6,10 @@ import shutil
 
 from analyze import main as run
 
+from utils.general import (
+    print_args,
+)
+
 FILE = Path(__file__).resolve()
 ROOT = FILE.parents[0]  # YOLOv5 root directory
 if str(ROOT) not in sys.path:
@@ -14,14 +18,12 @@ ROOT = Path(os.path.relpath(ROOT, Path.cwd()))  # relative
 
 PATH_VIDEO = "test/"
 
-
 def parse_opt():
     """Parses command-line arguments for YOLOv5 detection, setting inference options and model configurations."""
-    """Path model car plate"""
     parser = argparse.ArgumentParser()
-    parser.add_argument("--weights", nargs="+", type=str, default=ROOT / "runs/train/car_plate/weights/best.pt", help="model path or triton URL")
-    parser.add_argument("--source", type=str, default=ROOT / PATH_VIDEO, help="file/dir/URL/glob/screen/0(webcam)")
-    parser.add_argument("--data", type=str, default=ROOT / "datasets/Carv0/data.yaml", help="(optional) dataset.yaml path")
+    parser.add_argument("--weights", nargs="+", type=str, default="runs/train/car_plate/weights/best.pt", help="model path or triton URL")
+    parser.add_argument("--source", type=str, default=PATH_VIDEO, help="file/dir/URL/glob/screen/0(webcam)")
+    parser.add_argument("--data", type=str, default="datasets/Carv0/data.yaml", help="(optional) dataset.yaml path")
     parser.add_argument("--imgsz", "--img", "--img-size", nargs="+", type=int, default=[640], help="inference size h,w")
     parser.add_argument("--conf-thres", type=float, default=0.4, help="confidence threshold")
     parser.add_argument("--iou-thres", type=float, default=0.45, help="NMS IoU threshold")
@@ -49,7 +51,8 @@ def parse_opt():
     parser.add_argument("--vid-stride", type=int, default=1, help="video frame-rate stride")
     opt = parser.parse_args()
     opt.imgsz *= 2 if len(opt.imgsz) == 1 else 1  # expand
-    return parser
+    print_args(vars(opt))
+    return opt
 
 if __name__ == "__main__":
     opt = parse_opt()
