@@ -110,7 +110,7 @@ def check_lp(lp_txt):
                 seq+="1"
             else:
                 seq+="2"
-        if "0011100" in seq:        # 9 9 9 A A A 9 9"
+        if "0011100" in seq:        # A A 9 9 9 A A"
             seq = list(seq)
             for i in range(size):
                 if seq[i] == "0":
